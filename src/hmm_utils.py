@@ -279,7 +279,7 @@ def forward_algorithm(sel,times,derSampledTimes,ancSampledTimes,epochs,N,h,freqs
         alphaMat[tb,:] = alpha
     return alphaMat
 
-@njit('float64[:,:](float64[:],float64[:,:],float64[:],float64[:],float64[:],float64[:],float64,float64[:],float64[:],float64[:],float64[:],float64[:],float64[:],float64[:,:],float64[:,:],float64[:,:],int64,int64,float64)',cache=True)
+@njit('float64[:,:](float64[:],float64[:,:],float64[:],float64[:],float64[:],float64[:],float64,float64[:],float64[:],float64[:],float64[:],float64[:],float64[:],float64[:,:],float64[:,:],float64[:,:],int64,int64,float64)',cache=True, nogil=True)
 def backward_algorithm(sel,times,derSampledTimes,ancSampledTimes,epochs,N,h,freqs,logfreqs,log1minusfreqs,z_bins,z_logcdf,z_logsf,ancientGLs,ancientHapGLs,TRANMATRIX, noCoals=1,precomputematrixboolean=0,currFreq=-1):
 
     '''
@@ -462,6 +462,8 @@ def backward_algorithm(sel,times,derSampledTimes,ancSampledTimes,epochs,N,h,freq
             lowerbounddd = 0
             upperbounddd = lf
         ####################################
+        # prevAlpha is already copied; skipped states have zero current mass.
+        alpha[:] = -np.inf
         for i in range(lowerbounddd,upperbounddd):
             alpha[i] = _logsumexp(prevAlpha[lowerindex[i]:upperindex[i]] + currTrans[lowerindex[i]:upperindex[i],i]) + glEmissions[i] + coalEmissions[i]
             if np.isnan(alpha[i]):

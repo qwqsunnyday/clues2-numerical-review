@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+numba_cache/
+results*/
+receipt*/
+*.npz
+*.tar
+*.vcf*
+*.bam
+*.cram
+*.newick

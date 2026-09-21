@@ -1,0 +1,15 @@
+{
+  "upstream_hmm_sha256": "fcbc9f21a9d079f193fd43b0f2b9a2cd3089f7098c4d5be43ed10e7544b7536d",
+  "upstream_inference_sha256": "daaa558f848ed326eb1dc3c0db82650cb646ffcb26e4824d94a9b45aaa4a1179",
+  "files": {
+    "hmm_utils.py": "24e2b0c145379217426d655e34c30a22edb2c9d865a4304971f3e7c987de04e5",
+    "hmm_full_range.py": "8ee9edf22db9e952758919f1a11277a1705359e3fa86f598dfa88700c5f5cc40",
+    "upstream_io.py": "daaa558f848ed326eb1dc3c0db82650cb646ffcb26e4824d94a9b45aaa4a1179"
+  },
+  "changes": [
+    "Reset all current HMM states after copying previous state and before selective updates",
+    "Release GIL in backward_algorithm for ordered branch parallelism; equations unchanged",
+    "Full-range oracle disables only the adaptive update range",
+    "upstream_io is immutable parser/loading reference; its __main__ is never executed"
+  ]
+}

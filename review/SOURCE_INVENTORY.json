@@ -251,11 +251,41 @@
       "original_lines": 38,
       "path_redacted": false,
       "source_revision": "revision_v02 postprocessing"
+    },
+    {
+      "file": "trajectory_v02/code/summarize_posterior.py",
+      "original_sha256": "15fcc8bc135184dbe13a81beb20ca7002a3685c3fb0c2ed74ddfb51afa7e8360",
+      "export_sha256": "15fcc8bc135184dbe13a81beb20ca7002a3685c3fb0c2ed74ddfb51afa7e8360",
+      "original_lines": 142,
+      "path_redacted": false,
+      "source_revision": "posterior decomposition v03; existing conditional_trajectory_v02 inputs"
+    },
+    {
+      "file": "trajectory_v02/code/audit_posterior_summary.py",
+      "original_sha256": "2644a176a9b86c1da974fb3d6d7b864ad129dee723ee30b7c9fc3da3ad78d00f",
+      "export_sha256": "2644a176a9b86c1da974fb3d6d7b864ad129dee723ee30b7c9fc3da3ad78d00f",
+      "original_lines": 58,
+      "path_redacted": false,
+      "source_revision": "posterior decomposition v03; existing conditional_trajectory_v02 inputs"
+    },
+    {
+      "file": "trajectory_v02/code/plot_posterior_summary.py",
+      "original_sha256": "d7cb7603505cf23826e3ff23d31065af85b74aa7c2a28f337a814c54a89675c1",
+      "export_sha256": "1af48b6fe7253f86e54f882106e09b732aa826cd0132b62361dc5bd96fd0537c",
+      "original_lines": 101,
+      "path_redacted": true,
+      "source_revision": "posterior decomposition v03; existing conditional_trajectory_v02 inputs"
     }
   ],
   "current_v02_counts": {
     "new_code_and_launcher_files": 27,
     "new_code_and_launcher_lines": 3596,
     "core_hmm_numstat_vs_baseline": "8\t9\tsrc/hmm_utils.py"
+  },
+  "current_v03_counts": {
+    "new_postprocessing_files_this_revision": 3,
+    "new_postprocessing_lines_this_revision": 301,
+    "core_hmm_changed_this_revision": false,
+    "inference_rerun": false
   }
 }

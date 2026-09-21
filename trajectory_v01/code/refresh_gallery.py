@@ -4,19 +4,25 @@ The shared checker only discovers experiments/*/figures/manifest.tsv. This run
 is in an established rephasing directory. Preserve and report global diagnostics;
 validate this run directly. Gallery rendering is not global QA acceptance.
 """
+import argparse
 import csv
 import json
 from pathlib import Path
 import sys
 
-run=Path(__file__).resolve().parents[1]
+parser=argparse.ArgumentParser()
+parser.add_argument('--run',type=Path,default=Path(__file__).resolve().parents[1])
+parser.add_argument('--report-name',default='gallery_check_before_after_v01.json')
+args=parser.parse_args()
+run=args.run.resolve()
 project=next(p for p in run.parents if (p/'AGENTS.md').is_file())
 sys.path.insert(0,'/REVIEW_ENV/figure_helpers')
 import project_catalog as catalog
 
 selection=project/'docs/figure_selection.tsv'
 global_check=catalog.check_project(project,selection,False)
-report=run/'results/gallery_check_before_after_v01.json'
+assert Path(args.report_name).name==args.report_name
+report=run/'results'/args.report_name
 assert not report.exists()
 report.write_text(json.dumps({k:v for k,v in global_check.items() if k!='rows'},ensure_ascii=False,indent=2),encoding='utf-8')
 with selection.open(encoding='utf-8-sig',newline='') as f:
@@ -42,7 +48,7 @@ for row in selected:
         row[key]=next(iter(values))
     assert (project/row['selection_evidence']).is_file()
 content=catalog.render_gallery(project,selection,rows)
-notice='本次新增CLUES条件轨迹已完成单图核验；全项目目录检查仍有既有布局/引用问题，详见CLUES轨迹目录的results/gallery_check_v01.json。图册展示不代表全项目QA通过。'
+notice=f'本次CLUES轨迹按本次manifest核对；全项目目录检查仍有既有布局/引用问题，详见 {report.relative_to(project).as_posix()}。图册展示不代表全项目QA通过。'
 content=content.replace('# TDRD6 当前图册','# TDRD6 当前图册\n\n'+notice,1)
 catalog.write_gallery(project,project/'docs/FIGURES.md',content)
 print(json.dumps(dict(scoped_figures=len(selected),scoped_exports=len(manifest),scoped_PASS=True,global_summary=global_check['summary'])))

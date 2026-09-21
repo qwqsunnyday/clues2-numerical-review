@@ -22,5 +22,21 @@
   {
     "layer": "plotting and catalogue",
     "sha": "dc27ce3101f933df2b52aa73245bee30c110635b"
+  },
+  {
+    "layer": "v02 boundary and HMM bounds repair",
+    "sha": "cbb19d8be5165c8f4466d73b5d818c2bc01c6cc1"
+  },
+  {
+    "layer": "joint conditional path sampler",
+    "sha": "76b4590878c3c92f9305423977fa72fd1e850e4e"
+  },
+  {
+    "layer": "v02 scope record",
+    "sha": "c15a0dc7f0e067ca2a93f75091754e8788b43e1b"
+  },
+  {
+    "layer": "completed rerun audit and smoothness plots",
+    "sha": "2528c3ae2d0f5ab43caa0b9902888c793fdf7c7c"
   }
 ]

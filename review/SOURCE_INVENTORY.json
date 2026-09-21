@@ -158,10 +158,11 @@
     },
     {
       "file": "trajectory_v01/code/refresh_gallery.py",
-      "original_sha256": "b5d560f39d167accaf5fda7ecba5cef8b11022d21373f38d83a9a5e18214cd05",
-      "export_sha256": "f0c3a9d3f5773e1bbe0d1778abde5f7bdda0dde1fca3efec02e3d25c0f779ef1",
-      "original_lines": 48,
-      "path_redacted": true
+      "original_sha256": "ddcc75a140241a8259f9adb803fb0d2c2630e0318e304555ea34045fbf37b2ba",
+      "export_sha256": "4576d0a7e21c87a4a6009848f65744b4ebef8f8c09e5229394169c4c9ea0869a",
+      "original_lines": 54,
+      "path_redacted": true,
+      "source_revision": "shared gallery parameterization"
     },
     {
       "file": "src/upstream_io.py",
@@ -226,6 +227,35 @@
       "original_lines": 41,
       "path_redacted": false,
       "source_revision": "revision_v02"
+    },
+    {
+      "file": "trajectory_v02/code/audit_receipt.py",
+      "original_sha256": "bf837d33bfc0c881eaa64051b5031bd07877e80e549ec02c6a3be144762fd5c3",
+      "export_sha256": "bf837d33bfc0c881eaa64051b5031bd07877e80e549ec02c6a3be144762fd5c3",
+      "original_lines": 81,
+      "path_redacted": false,
+      "source_revision": "revision_v02 postprocessing"
+    },
+    {
+      "file": "trajectory_v02/code/plot_smoothness.py",
+      "original_sha256": "6039c240cda1fb94303f0027a8bea00d6ae9966ccd30cac9e92009cf0e4636d2",
+      "export_sha256": "f26ecb72712a2b9009e4d48da0922170f010d2d9145f95920c5fa5dcfe5ed7d3",
+      "original_lines": 84,
+      "path_redacted": true,
+      "source_revision": "revision_v02 postprocessing"
+    },
+    {
+      "file": "tools/compare_completed.py",
+      "original_sha256": "60e19cf2c9c1a130d200cb2a986b7da2818d68756a897448691c26cc33077bdd",
+      "export_sha256": "60e19cf2c9c1a130d200cb2a986b7da2818d68756a897448691c26cc33077bdd",
+      "original_lines": 38,
+      "path_redacted": false,
+      "source_revision": "revision_v02 postprocessing"
     }
-  ]
+  ],
+  "current_v02_counts": {
+    "new_code_and_launcher_files": 27,
+    "new_code_and_launcher_lines": 3596,
+    "core_hmm_numstat_vs_baseline": "8\t9\tsrc/hmm_utils.py"
+  }
 }

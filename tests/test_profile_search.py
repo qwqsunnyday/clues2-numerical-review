@@ -54,6 +54,35 @@ class ProfileTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             fit_profile(lambda x:math.nan,self.grid)
 
+    def test_near_edge_internal_peaks_and_narrow_intervals(self):
+        for mean,sd in [(0.099,.005),(-.099,.005),(.099,.001),(.0975,.003)]:
+            with self.subTest(mean=mean,sd=sd):
+                f=lambda x:(mean**2-(x-mean)**2)/(2*sd**2)
+                r=fit_profile(f,self.grid,xtol=1e-5)
+                self.assertAlmostEqual(r['best_s'],mean,places=5)
+                self.assertFalse(r['optimum_at_boundary'])
+                c=r['confidence_components'][0]
+                self.assertAlmostEqual(c['lower'],max(-.1,mean-1.95996398454*sd),places=5)
+                self.assertAlmostEqual(c['upper'],min(.1,mean+1.95996398454*sd),places=5)
+
+    def test_peak_discovered_in_confidence_construction_is_refined(self):
+        # The broad peak is bracketed by [-.05,.05]. CI evaluation outside that
+        # bracket exposes a narrow higher peak invisible on the initial grid.
+        grid=[-.1,-.05,0.,.05,.1]
+        def f(x):
+            return max(-.5*(x/.035)**2,1-.5*((x-.065)/.002)**2)
+        r=fit_profile(f,grid,xtol=1e-7)
+        self.assertAlmostEqual(r['best_s'],.065,places=5)
+        self.assertTrue(r['confidence_contains_best'])
+        self.assertGreater(r['confidence_search_cycles'],1)
+        self.assertTrue(any('discovered' in x['reason'] for x in r['searches']))
+
+    def test_monotone_endpoints_remain_censored(self):
+        for sign in (-1,1):
+            r=fit_profile(lambda x:sign*100*x,self.grid)
+            self.assertEqual(r['best_s'],sign*.1)
+            self.assertTrue(r['optimum_at_boundary'])
+
 
 if __name__=='__main__':
     unittest.main()

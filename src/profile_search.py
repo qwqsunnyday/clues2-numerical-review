@@ -16,6 +16,7 @@ def fit_profile(evaluate, grid, confidence=0.95, xtol=1e-5, max_evaluations=160)
         raise ValueError('Grid must include both signs and confidence must be in (0,1)')
     cache = {}
     searches = []
+    refined = set()
 
     def value(x):
         # Operate on s itself. Rounding is only a cache key, never x=s+1.
@@ -37,19 +38,47 @@ def fit_profile(evaluate, grid, confidence=0.95, xtol=1e-5, max_evaluations=160)
         value(x)
     initial = dict(cache)
     flat = max(initial.values())-min(initial.values()) < 1e-8
+
+    def refine(left, right, reason):
+        bracket = (left, right)
+        if bracket in refined:
+            return
+        refined.add(bracket)
+        result = minimize_scalar(lambda x: -value(x), bounds=bracket,
+                                 method='bounded', options={'xatol':xtol,'maxiter':80})
+        searches.append(dict(left=left,right=right,success=bool(result.success),
+                             x=float(result.x),message=str(result.message),reason=reason))
+        if not result.success:
+            raise RuntimeError('A candidate-peak refinement failed')
+
+    def refine_discovered_peak():
+        peak = max(cache, key=lambda x:(cache[x], -abs(x)))
+        # CI root/midpoint evaluations can expose a peak missed by the original
+        # grid. Return to maximization around that point before rebuilding CI.
+        xs = sorted(cache)
+        i = xs.index(peak)
+        left, right = xs[max(0,i-1)], xs[min(len(xs)-1,i+1)]
+        if left < right:
+            refine(left, right, 'peak discovered while constructing confidence set')
+
     if not flat:
+        # An endpoint may be the best grid point although the true peak is just
+        # inside the domain. Endpoint candidates need one-sided refinement.
+        if initial[grid[0]] >= initial[grid[1]]:
+            refine(grid[0], grid[1], 'left edge candidate')
+        if initial[grid[-1]] >= initial[grid[-2]]:
+            refine(grid[-2], grid[-1], 'right edge candidate')
         for left, middle, right in zip(grid[:-2], grid[1:-1], grid[2:]):
             if initial[middle] >= max(initial[left], initial[right]):
-                result = minimize_scalar(lambda x: -value(x), bounds=(left,right),
-                                         method='bounded', options={'xatol':xtol,'maxiter':80})
-                searches.append(dict(left=left,right=right,success=bool(result.success),
-                                     x=float(result.x),message=str(result.message)))
-                if not result.success:
-                    raise RuntimeError('A candidate-peak refinement failed')
+                refine(left, right, 'interior grid candidate')
     drop = NormalDist().inv_cdf((1+confidence)/2)**2 / 2
     components = []
     roots = []
-    for cycle in range(3):
+    # The evaluation budget bounds retries. A newly found peak is optimized,
+    # rather than merely repeating CI construction a fixed three times.
+    cycles = 0
+    while True:
+        cycles += 1
         best_s = max(cache, key=lambda x:(cache[x], -abs(x)))
         best = cache[best_s]
         cutoff = best-drop
@@ -69,6 +98,7 @@ def fit_profile(evaluate, grid, confidence=0.95, xtol=1e-5, max_evaluations=160)
                 roots.append(dict(s=root,residual=residual))
         # CI refinement is also checked for a newly discovered better point.
         if max(cache.values()) > best+1e-8:
+            refine_discovered_peak()
             continue
         bounds = [lower]+sorted({r['s'] for r in roots})+[upper]
         components = []
@@ -81,10 +111,9 @@ def fit_profile(evaluate, grid, confidence=0.95, xtol=1e-5, max_evaluations=160)
                                        lower_censored=(lo==lower and cache[lower]>=cutoff),
                                        upper_censored=(hi==upper and cache[upper]>=cutoff)))
         if max(cache.values()) > best+1e-8:
+            refine_discovered_peak()
             continue
         break
-    else:
-        raise RuntimeError('A new peak was found during confidence-set construction')
     # Select again after all evaluations, even if the change is below tolerance.
     best_s = max(cache, key=lambda x:(cache[x], -abs(x)))
     best = cache[best_s]
@@ -97,7 +126,8 @@ def fit_profile(evaluate, grid, confidence=0.95, xtol=1e-5, max_evaluations=160)
                 confidence_contains_best=contains,best_not_below_evaluated=True,
                 optimum_at_boundary=boundary,flat_over_initial_grid=flat,
                 disconnected_confidence_set=len(components)>1,searches=searches,
+                confidence_search_cycles=cycles,
                 evaluations=len(cache),initial_grid=grid,
                 likelihood_points=[dict(s=x,logLR=cache[x]) for x in sorted(cache)],
-                search_scope='Fixed grid with bounded refinement of its candidate peaks',
+                search_scope='Fixed grid; interior and edge candidate refinement; reoptimization of peaks discovered during CI construction',
                 interval_method='Conditional likelihood-ratio set; asymptotic chi-square(1), not calibrated population coverage')

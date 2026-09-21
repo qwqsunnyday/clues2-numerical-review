@@ -34,7 +34,7 @@ def main():
     config=json.loads(args.config.read_text())
     spec=config['runs'][args.index]
     arm,df=spec['arm'],spec['df']
-    old=root.parent
+    old=(root/config.get('input_root_relative','..')).resolve()
     output_root=args.output_root.resolve() if args.output_root else root/'results'
     out=output_root/f'{arm}_df{df}'
     out.mkdir(parents=True,exist_ok=False)
@@ -59,7 +59,7 @@ def main():
     assert metadata['conversion']['samples']==200
     assert metadata['AC']==24 and metadata['AN']==4096
     code_paths=list((root/'src').glob('*.py'))+list((root/'code').glob('*.py'))+list((root/'tests').glob('*.py'))+[root/'code/run.sbatch',args.config,root/'source_identity.json']
-    identity=dict(run_id='clues_numerical_fix_v01',arm=arm,df=df,job=os.environ['SLURM_JOB_ID'],
+    identity=dict(run_id=config['run_id'],arm=arm,df=df,job=os.environ['SLURM_JOB_ID'],
                   array_job=os.environ.get('SLURM_ARRAY_JOB_ID'),array_task=os.environ.get('SLURM_ARRAY_TASK_ID'),
                   restart=os.environ.get('SLURM_RESTART_COUNT','0'),argv=sys.argv,cwd=os.getcwd(),
                   start_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),python=sys.version,
@@ -156,9 +156,16 @@ def main():
         checks['best_matches_trace']=profile['logLR']==max(x['logLR'] for x in evaluation_rows)
         checks['all_200_draws_retained']=len(neutral)==200
         checks['repeat_best_max_error']=float(np.max(np.abs(scores(best)-neutral-ratios_by_s[best])))
+        endpoint_errors=[]
+        for endpoint in profile['confidence_roots']:
+            point=round(endpoint['s'],14)
+            reference=scores(point,module=oracle)-neutral_oracle
+            endpoint_errors.append(float(np.max(np.abs(reference-ratios_by_s[point]))))
+        checks['oracle_confidence_endpoint_max_error']=max(endpoint_errors,default=0.)
         checks['PASS']=(checks['oracle_neutral_max_error']<1e-7 and checks['oracle_best_ratio_max_error']<1e-7
                         and checks['best_matches_trace'] and checks['repeat_best_max_error']<1e-7
-                        and abs(checks['neutral_logLR'])<1e-10)
+                        and abs(checks['neutral_logLR'])<1e-10
+                        and checks['oracle_confidence_endpoint_max_error']<1e-7)
         (out/'validation.json').write_text(json.dumps(checks,indent=2)+'\n')
         result=dict(status='COMPLETE',arm=arm,df=df,people=2048,AN=4096,original_AC=24,branch_samples=200,
                     profile=profile,at_best=cache[best],validation=checks,flips=identity['flips'],

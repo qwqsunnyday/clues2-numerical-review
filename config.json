@@ -1,5 +1,5 @@
 {
-  "run_id": "clues_numerical_fix_v01",
+  "run_id": "clues_numerical_fix_v02",
   "parameters": {
     "N_haploid": 20000,
     "h": 0.5,
@@ -47,8 +47,13 @@
   "runs": [
     {
       "arm": "published",
-      "df": 450,
+      "df": 1800,
       "input_sha256": "931ec4791d9a9d0f2509d31512a4dbe8a46558e50e875e262f93140252c6532a"
+    },
+    {
+      "arm": "shapeit419",
+      "df": 1800,
+      "input_sha256": "5e45badb839bb7a512840975daed4b8a35f9157b5b52f33b7f90ca9bac09bafa"
     },
     {
       "arm": "published",
@@ -56,24 +61,20 @@
       "input_sha256": "931ec4791d9a9d0f2509d31512a4dbe8a46558e50e875e262f93140252c6532a"
     },
     {
-      "arm": "published",
-      "df": 1800,
-      "input_sha256": "931ec4791d9a9d0f2509d31512a4dbe8a46558e50e875e262f93140252c6532a"
-    },
-    {
-      "arm": "shapeit419",
-      "df": 450,
-      "input_sha256": "5e45badb839bb7a512840975daed4b8a35f9157b5b52f33b7f90ca9bac09bafa"
-    },
-    {
       "arm": "shapeit419",
       "df": 900,
       "input_sha256": "5e45badb839bb7a512840975daed4b8a35f9157b5b52f33b7f90ca9bac09bafa"
     },
     {
+      "arm": "published",
+      "df": 450,
+      "input_sha256": "931ec4791d9a9d0f2509d31512a4dbe8a46558e50e875e262f93140252c6532a"
+    },
+    {
       "arm": "shapeit419",
-      "df": 1800,
+      "df": 450,
       "input_sha256": "5e45badb839bb7a512840975daed4b8a35f9157b5b52f33b7f90ca9bac09bafa"
     }
-  ]
+  ],
+  "input_root_relative": "../.."
 }

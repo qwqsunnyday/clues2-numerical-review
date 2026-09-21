@@ -19,9 +19,10 @@ def main():
     p.add_argument('--receipt',type=Path,required=True)
     p.add_argument('--allow-partial',action='store_true')
     p.add_argument('--baseline-grid',type=Path)
+    p.add_argument('--results-dir',default='results_r02')
     args=p.parse_args()
     receipt=args.receipt.resolve()
-    roots=sorted(receipt.glob('results_r02/*_df*'),
+    roots=sorted(receipt.glob(args.results_dir+'/*_df*'),
                  key=lambda path:(path.name.rsplit('_df',1)[0],int(path.name.rsplit('_df',1)[1])))
     assert roots, 'No result directories found'
     config=json.loads((receipt/'config.json').read_text())
@@ -52,7 +53,7 @@ def main():
         if jobs:
             job=jobs[f"{identity['array_job']}_{identity['array_task']}"]
             assert job['State']=='COMPLETED' and job['ExitCode']=='0:0'
-            assert int(job['AllocCPUS'])==identity['workers']==4
+            assert int(job['AllocCPUS'])==identity['workers']
         assert result['people']==2048 and result['AN']==4096 and result['original_AC']==24
         assert result['original_derived']==identity['original_derived']==24
         assert result['converted_derived']==identity['converted_derived']=={'published':22,'shapeit419':23}[key[0]]

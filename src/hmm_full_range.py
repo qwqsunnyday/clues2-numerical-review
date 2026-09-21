@@ -185,9 +185,8 @@ def forward_algorithm(sel,times,derSampledTimes,ancSampledTimes,epochs,N,h,freqs
                     if lowerbound == 0:
                         break
                     lowerbound = lowerbound - 1
-                while (chosenrow[upperbound] > neginf):
-                    if upperbound == lf:
-                        break
+                # Check the bound before reading the absorbing last state.
+                while upperbound < lf and chosenrow[upperbound] > neginf:
                     upperbound = upperbound + 1
 
                 upperindex[ii] = upperbound
@@ -332,11 +331,9 @@ def backward_algorithm(sel,times,derSampledTimes,ancSampledTimes,epochs,N,h,freq
                     if lowerbound == 0:
                         break
                     lowerbound = lowerbound - 1
-                if upperbound != lf: # added
-                    while (chosenrow[upperbound] > neginf):
-                        if upperbound == lf:
-                            break
-                        upperbound = upperbound + 1
+                # Check the bound before reading the absorbing last state.
+                while upperbound < lf and chosenrow[upperbound] > neginf:
+                    upperbound = upperbound + 1
                 upperindex[ii] = upperbound
                 lowerindex[ii] = lowerbound
         #grab ancient GL rows
@@ -405,7 +402,7 @@ def backward_algorithm(sel,times,derSampledTimes,ancSampledTimes,epochs,N,h,freq
 
             nDerRemaining += len(numberofsampledder[numberofsampledder <= cumGens + 1.0])
             nAncRemaining += len(numberofsampledanc[numberofsampledanc <= cumGens + 1.0])
-        if False:  # Independent full-range update reference.
+        if False:
             maxloc = np.argmax(prevAlpha)
             previouscolumn = np.exp(prevAlpha - prevAlpha[maxloc])
             prevsumtarget = np.sum(previouscolumn) * 0.999

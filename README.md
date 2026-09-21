@@ -9,3 +9,5 @@
 这不是最小修复后的标准CLUES输出声明：条件轨迹还改变了选择参数处理和分支后验汇总。请逐个commit审查，不把全部改动当作一行bug修复。
 
 完整改动清单见 [review/CHANGES.md](review/CHANGES.md)，文件身份与行数见 [review/SOURCE_INVENTORY.json](review/SOURCE_INVENTORY.json)。
+
+2026-09-21 v02：修复边界漏峰与索引越界，增加联合后验路径诊断；正式重跑进行中，尚未宣称曲线或完整结果验收。旧v01重现需检出相应历史提交。

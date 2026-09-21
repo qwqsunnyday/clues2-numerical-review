@@ -1,0 +1,157 @@
+{
+  "summary": {
+    "modified_upstream_files": 1,
+    "unchanged_upstream_inference": true,
+    "new_code_and_launcher_files": 17,
+    "new_code_and_launcher_lines": 2530,
+    "reused_hmm_copy_files": [
+      "src/hmm_full_range.py",
+      "trajectory_v01/src/legacy_hmm.py",
+      "trajectory_v01/src/trajectory_hmm.py"
+    ],
+    "reused_hmm_copy_lines": 1426,
+    "other_added_code_lines": 1104
+  },
+  "files": [
+    {
+      "file": "src/hmm_utils.py",
+      "original_sha256": "24e2b0c145379217426d655e34c30a22edb2c9d865a4304971f3e7c987de04e5",
+      "export_sha256": "24e2b0c145379217426d655e34c30a22edb2c9d865a4304971f3e7c987de04e5",
+      "original_lines": 476,
+      "path_redacted": false
+    },
+    {
+      "file": "src/profile_search.py",
+      "original_sha256": "5d1d3b5f5c088dded2f51a2928d5dd5ca0c6754e7fc20df581c36a9565584e04",
+      "export_sha256": "5d1d3b5f5c088dded2f51a2928d5dd5ca0c6754e7fc20df581c36a9565584e04",
+      "original_lines": 103,
+      "path_redacted": false
+    },
+    {
+      "file": "code/run_fixed.py",
+      "original_sha256": "abe92fb78ba378054f140f6f724d31ae00e4d7342125e631141abf566bca8374",
+      "export_sha256": "abe92fb78ba378054f140f6f724d31ae00e4d7342125e631141abf566bca8374",
+      "original_lines": 178,
+      "path_redacted": false
+    },
+    {
+      "file": "code/run.sbatch",
+      "original_sha256": "35501f1bd616737d8622f7a3158f1572b668af2cd33e93280611e2e0b631fb55",
+      "export_sha256": "81056386bb383c52b8213091b02254b5d79c2b7d7bc34629391b0e50a3c2d966",
+      "original_lines": 18,
+      "path_redacted": true
+    },
+    {
+      "file": "tests/test_profile_search.py",
+      "original_sha256": "b40ae2e4ad8b239c3f4074d6b038e9e9a66c7f725e1df939b2fe63d719783cba",
+      "export_sha256": "b40ae2e4ad8b239c3f4074d6b038e9e9a66c7f725e1df939b2fe63d719783cba",
+      "original_lines": 59,
+      "path_redacted": false
+    },
+    {
+      "file": "config.json",
+      "original_sha256": "ecd4b8834d3e3b09b2e5a6ea12c01ecddfabe4a69c414f88bb55d0edaa4e8e30",
+      "export_sha256": "0f77ac244ae1c0fa318f7947856b70566d246d9b83522a4e834cd5ad5febc4f5",
+      "original_lines": 79,
+      "path_redacted": false
+    },
+    {
+      "file": "source_identity.json",
+      "original_sha256": "adf7462b68bc5f7aef63ead04bc2f968c4704b91114c8d8cfb68433295b05abb",
+      "export_sha256": "0e3a5def456910a71c315f14b280471f6af9599d701c8e2cf5c8ef8153eb79b8",
+      "original_lines": 15,
+      "path_redacted": false
+    },
+    {
+      "file": "trajectory_v01/code/run_trajectory.py",
+      "original_sha256": "bec8a1c2203f93c6f4f6b5d89730abc76af04457c5c306ccba5002de666cc0f4",
+      "export_sha256": "bec8a1c2203f93c6f4f6b5d89730abc76af04457c5c306ccba5002de666cc0f4",
+      "original_lines": 138,
+      "path_redacted": false
+    },
+    {
+      "file": "trajectory_v01/code/run.sbatch",
+      "original_sha256": "2df5ae4ca3fe4450044267780fae7bfb8aaa6a02b9052a289a6866f37f492e83",
+      "export_sha256": "8b744da22248712825f0a5ed15c1d931b5a3dcea422c07dcf0caf34df6936ca0",
+      "original_lines": 15,
+      "path_redacted": true
+    },
+    {
+      "file": "trajectory_v01/src/trajectory_hmm.py",
+      "original_sha256": "3d723ca4157709229aca1931be86cd5318e705985e48c0e7c353a47e6b292632",
+      "export_sha256": "3d723ca4157709229aca1931be86cd5318e705985e48c0e7c353a47e6b292632",
+      "original_lines": 476,
+      "path_redacted": false
+    },
+    {
+      "file": "src/hmm_full_range.py",
+      "original_sha256": "8ee9edf22db9e952758919f1a11277a1705359e3fa86f598dfa88700c5f5cc40",
+      "export_sha256": "8ee9edf22db9e952758919f1a11277a1705359e3fa86f598dfa88700c5f5cc40",
+      "original_lines": 476,
+      "path_redacted": false
+    },
+    {
+      "file": "code/audit_receipt.py",
+      "original_sha256": "7d6221aace60dff7a8ad42d2303512e4a918b1c17b771f029447f0e29ccdd8dc",
+      "export_sha256": "7d6221aace60dff7a8ad42d2303512e4a918b1c17b771f029447f0e29ccdd8dc",
+      "original_lines": 152,
+      "path_redacted": false
+    },
+    {
+      "file": "trajectory_v01/code/audit_receipt.py",
+      "original_sha256": "fd844b3109ea4e224349dec5f2260fe90cc4c65272fe2d52ef8b25a1c1c77e96",
+      "export_sha256": "fd844b3109ea4e224349dec5f2260fe90cc4c65272fe2d52ef8b25a1c1c77e96",
+      "original_lines": 42,
+      "path_redacted": false
+    },
+    {
+      "file": "trajectory_v01/code/audit_ablation.py",
+      "original_sha256": "1d5237a21bc52fb7864f772b2a1417103fbe7d504b956210287df7bcd80461b6",
+      "export_sha256": "1d5237a21bc52fb7864f772b2a1417103fbe7d504b956210287df7bcd80461b6",
+      "original_lines": 141,
+      "path_redacted": false
+    },
+    {
+      "file": "trajectory_v01/code/ablation.sbatch",
+      "original_sha256": "838f9b0033cb03dc4e28ad0193a3e5ae1916e965347f203319a45d58d70758ec",
+      "export_sha256": "28821eec4377eb790f3798bea61a7f3312d2f8c19d58be23a069cdb3ff6ea8d5",
+      "original_lines": 15,
+      "path_redacted": true
+    },
+    {
+      "file": "trajectory_v01/code/check_ablation_receipt.py",
+      "original_sha256": "1cedfc8843cae7eaac1099f38467336016a0cbf4879297a71f3afcdc7cfe9498",
+      "export_sha256": "1cedfc8843cae7eaac1099f38467336016a0cbf4879297a71f3afcdc7cfe9498",
+      "original_lines": 59,
+      "path_redacted": false
+    },
+    {
+      "file": "trajectory_v01/src/legacy_hmm.py",
+      "original_sha256": "818ce5757c27835b5e263d2b89e233b97d81a778bfbb6a7a043f10edcd6df6f5",
+      "export_sha256": "818ce5757c27835b5e263d2b89e233b97d81a778bfbb6a7a043f10edcd6df6f5",
+      "original_lines": 474,
+      "path_redacted": false
+    },
+    {
+      "file": "trajectory_v01/code/plot_trajectory.py",
+      "original_sha256": "d73780380c9043f0f889c0ab397c58691bcb8b6954052e891d7ea2a6518ecde1",
+      "export_sha256": "0658978b5d90422356b774935cf061421e74d8279a3f79b97c2f977048b261e2",
+      "original_lines": 68,
+      "path_redacted": true
+    },
+    {
+      "file": "trajectory_v01/code/plot_before_after.py",
+      "original_sha256": "ad26012c31e1a37b9df6b191750bebde4c42b407e677f33f512bda610b95578d",
+      "export_sha256": "2b649952e7d8961213d6e4ed6d8f7d3d91bf9ee4b12d99f57338f518e10b59fa",
+      "original_lines": 68,
+      "path_redacted": true
+    },
+    {
+      "file": "trajectory_v01/code/refresh_gallery.py",
+      "original_sha256": "b5d560f39d167accaf5fda7ecba5cef8b11022d21373f38d83a9a5e18214cd05",
+      "export_sha256": "f0c3a9d3f5773e1bbe0d1778abde5f7bdda0dde1fca3efec02e3d25c0f779ef1",
+      "original_lines": 48,
+      "path_redacted": true
+    }
+  ]
+}

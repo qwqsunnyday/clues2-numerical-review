@@ -1,0 +1,26 @@
+[
+  {
+    "layer": "baseline",
+    "sha": "ffff2b58ee9c7df1b03c3d14defcecf8e375e504"
+  },
+  {
+    "layer": "core HMM only",
+    "sha": "758db7cdc53d7b6ce641ec3f7d16d228bb66c3ba"
+  },
+  {
+    "layer": "selection search and intervals",
+    "sha": "a896874e3ad5e64172af5706c114dbbfba38b53c"
+  },
+  {
+    "layer": "conditional trajectory semantics",
+    "sha": "b822bd0af25fe3af2bc65aa1d24e2b2daac49a61"
+  },
+  {
+    "layer": "validation and controlled comparison",
+    "sha": "a4a48629f978e4e586824ccd985ab6056b498edf"
+  },
+  {
+    "layer": "plotting and catalogue",
+    "sha": "dc27ce3101f933df2b52aa73245bee30c110635b"
+  }
+]

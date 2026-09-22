@@ -1,0 +1,9 @@
+# v02 validation and limits
+
+The boundary search and confidence-discovered peak tests pass. With NUMBA_BOUNDSCHECK=1, the same tiny absorbing-state HMM test raises IndexError in the frozen upstream forward kernel and passes in the revised kernel. The ten search/HMM tests pass locally and on Slurm. Two path tests pass against exhaustive enumeration of all 27 outcomes of a tiny HMM and against an absorbing chain.
+
+All six full-data profiles and four conditional trajectory scenarios completed successfully. The local independent receipt audit rebuilt every likelihood ratio and importance weight from the saved branch contributions, checked identities and scheduler status, and compared the neutral, best and confidence-endpoint results with full-state updates. All evaluations, branch log ratios, maxima and confidence components matched v01. All four raw trajectory posterior matrices matched v01 elementwise. Added complete paths agreed with analytic-mixture moments at predeclared times within Monte Carlo error.
+
+The revised figure displays the unsmoothed mean, median, pointwise interval, and the first 12 predeclared paths from 512 fixed-seed joint draws. The v01/v02 means overlap. The paths fluctuate more than the mean; no noise or smoothing is added to make a curve look plausible. This comparison supports distinguishing a posterior summary from an individual possible history.
+
+These are validation reports for private local receipts, not a publicly reproducible full-data package. This repository contains code and synthetic tests only. Study inputs, receipts, matrices and figures are not uploaded. Full-state updates share the same discrete model; the finite grid is not proof of a continuous global optimum. Fixed-s paths exclude selection-parameter uncertainty and remain conditional on topology, demography and recoding. Numerical checks do not establish a selection conclusion or prove the entire branch correct.

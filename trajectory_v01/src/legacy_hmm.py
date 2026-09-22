@@ -1,7 +1,7 @@
 import numpy as np
 from numba import njit
 
-@njit('float64(float64[:])',cache=True)
+@njit('float64(float64[:])',cache=True, nogil=True)
 def _logsumexp(a):
     """Standard logsumexp
     INPUT: a - vector of log probabilities
@@ -11,7 +11,7 @@ def _logsumexp(a):
     a_max = np.max(a)
     return np.log(np.sum(np.exp(a - a_max))) + a_max
 
-@njit('float64(float64[:],float64[:])',cache=True)
+@njit('float64(float64[:],float64[:])',cache=True, nogil=True)
 def _logsumexpb(a,b):
     """Standard logsumexp
     INPUT: a - vector of log probabilities
@@ -21,11 +21,11 @@ def _logsumexpb(a,b):
     a_max = np.max(a)
     return np.log(np.sum(b * np.exp(a - a_max))) + a_max
 
-@njit('float64(float64,float64,float64,float64[:],float64[:])',cache=True)
+@njit('float64(float64,float64,float64,float64[:],float64[:])',cache=True, nogil=True)
 def general_normal_cdf(x,mean, sd, xvals, yvals):
     return np.interp( (x - mean)/sd , xvals, yvals)
 
-@njit('float64[:](float64[:],int64,float64,float64,float64[:],float64[:],float64[:],float64[:],float64)',cache=True)
+@njit('float64[:](float64[:],int64,float64,float64,float64[:],float64[:],float64[:],float64[:],float64)',cache=True, nogil=True)
 def _log_trans_prob(BINGAPS, i,N,s,FREQS,z_bins,z_logcdf,z_logsf,h):
     """Standard logsumexp
     INPUT: i - an index. ranges from 0 to df-1 inclusive. Index of frequency bin
@@ -68,7 +68,7 @@ def _log_trans_prob(BINGAPS, i,N,s,FREQS,z_bins,z_logcdf,z_logsf,h):
             logP[j] = general_normal_cdf(BINGAPS[j], mu, sigma, z_bins, z_logcdf) - general_normal_cdf(BINGAPS[j - 1], mu, sigma, z_bins, z_logcdf)
     return np.log(logP / np.sum(logP)) # renormalize, change so we only compute log of relevant entries??
 
-@njit('float64[:,:](float64,float64,float64[:],float64[:],float64[:],float64[:],float64)',cache=True)
+@njit('float64[:,:](float64,float64,float64[:],float64[:],float64[:],float64[:],float64)',cache=True, nogil=True)
 def _nstep_log_trans_prob(N,s,FREQS,z_bins,z_logcdf,z_logsf,h):
 	"""Same input as before, except i.
     Performs the above calculation on all possible input frequencies p.
@@ -110,7 +110,7 @@ def _genotype_likelihood_emission(ancGLs,logp, log1p):
 		emission = -np.inf
 	return emission
 
-@njit('float64(float64[:],int64,float64[:],float64,float64,int64)',cache=True)
+@njit('float64(float64[:],int64,float64[:],float64,float64,int64)',cache=True, nogil=True)
 def _log_coal_density(times,n,epoch,xi,Ni,anc=0):
     if n == 1:
         # this flag indicates to ignore coalescence
@@ -138,7 +138,7 @@ def _log_coal_density(times,n,epoch,xi,Ni,anc=0):
     logp += logPk
     return logp
 
-@njit('float64[:,:](float64[:],float64[:,:],float64[:],float64[:],float64[:],float64[:],float64,float64[:],float64[:],float64[:],float64[:],float64[:],float64[:],float64[:,:],float64[:,:],int64)',cache=True)
+@njit('float64[:,:](float64[:],float64[:,:],float64[:],float64[:],float64[:],float64[:],float64,float64[:],float64[:],float64[:],float64[:],float64[:],float64[:],float64[:,:],float64[:,:],int64)',cache=True, nogil=True)
 def forward_algorithm(sel,times,derSampledTimes,ancSampledTimes,epochs,N,h,freqs,logfreqs,log1minusfreqs,z_bins,z_logcdf,z_logsf,ancientGLs,ancientHapGLs,noCoals=1):
 
     '''
@@ -185,8 +185,9 @@ def forward_algorithm(sel,times,derSampledTimes,ancSampledTimes,epochs,N,h,freqs
                     if lowerbound == 0:
                         break
                     lowerbound = lowerbound - 1
-                # Check the bound before reading the absorbing last state.
-                while upperbound < lf and chosenrow[upperbound] > neginf:
+                while (chosenrow[upperbound] > neginf):
+                    if upperbound == lf:
+                        break
                     upperbound = upperbound + 1
 
                 upperindex[ii] = upperbound
@@ -331,9 +332,11 @@ def backward_algorithm(sel,times,derSampledTimes,ancSampledTimes,epochs,N,h,freq
                     if lowerbound == 0:
                         break
                     lowerbound = lowerbound - 1
-                # Check the bound before reading the absorbing last state.
-                while upperbound < lf and chosenrow[upperbound] > neginf:
-                    upperbound = upperbound + 1
+                if upperbound != lf: # added
+                    while (chosenrow[upperbound] > neginf):
+                        if upperbound == lf:
+                            break
+                        upperbound = upperbound + 1
                 upperindex[ii] = upperbound
                 lowerindex[ii] = lowerbound
         #grab ancient GL rows
@@ -459,8 +462,6 @@ def backward_algorithm(sel,times,derSampledTimes,ancSampledTimes,epochs,N,h,freq
             lowerbounddd = 0
             upperbounddd = lf
         ####################################
-        # prevAlpha is already copied; skipped states have zero current mass.
-        alpha[:] = -np.inf
         for i in range(lowerbounddd,upperbounddd):
             alpha[i] = _logsumexp(prevAlpha[lowerindex[i]:upperindex[i]] + currTrans[lowerindex[i]:upperindex[i],i]) + glEmissions[i] + coalEmissions[i]
             if np.isnan(alpha[i]):

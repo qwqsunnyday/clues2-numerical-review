@@ -402,7 +402,7 @@ def backward_algorithm(sel,times,derSampledTimes,ancSampledTimes,epochs,N,h,freq
 
             nDerRemaining += len(numberofsampledder[numberofsampledder <= cumGens + 1.0])
             nAncRemaining += len(numberofsampledanc[numberofsampledanc <= cumGens + 1.0])
-        if h > 0.4 and h < 0.6:
+        if False:
             maxloc = np.argmax(prevAlpha)
             previouscolumn = np.exp(prevAlpha - prevAlpha[maxloc])
             prevsumtarget = np.sum(previouscolumn) * 0.999

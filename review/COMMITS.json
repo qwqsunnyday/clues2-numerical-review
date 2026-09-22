@@ -1,0 +1,42 @@
+[
+  {
+    "layer": "baseline",
+    "sha": "ffff2b58ee9c7df1b03c3d14defcecf8e375e504"
+  },
+  {
+    "layer": "core HMM only",
+    "sha": "758db7cdc53d7b6ce641ec3f7d16d228bb66c3ba"
+  },
+  {
+    "layer": "selection search and intervals",
+    "sha": "a896874e3ad5e64172af5706c114dbbfba38b53c"
+  },
+  {
+    "layer": "conditional trajectory semantics",
+    "sha": "b822bd0af25fe3af2bc65aa1d24e2b2daac49a61"
+  },
+  {
+    "layer": "validation and controlled comparison",
+    "sha": "a4a48629f978e4e586824ccd985ab6056b498edf"
+  },
+  {
+    "layer": "plotting and catalogue",
+    "sha": "dc27ce3101f933df2b52aa73245bee30c110635b"
+  },
+  {
+    "layer": "v02 boundary and HMM bounds repair",
+    "sha": "cbb19d8be5165c8f4466d73b5d818c2bc01c6cc1"
+  },
+  {
+    "layer": "joint conditional path sampler",
+    "sha": "76b4590878c3c92f9305423977fa72fd1e850e4e"
+  },
+  {
+    "layer": "v02 scope record",
+    "sha": "c15a0dc7f0e067ca2a93f75091754e8788b43e1b"
+  },
+  {
+    "layer": "completed rerun audit and smoothness plots",
+    "sha": "2528c3ae2d0f5ab43caa0b9902888c793fdf7c7c"
+  }
+]

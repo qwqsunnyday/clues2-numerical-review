@@ -1,0 +1,291 @@
+{
+  "summary": {
+    "modified_upstream_files": 1,
+    "unchanged_upstream_inference": true,
+    "new_code_and_launcher_files": 17,
+    "new_code_and_launcher_lines": 2530,
+    "reused_hmm_copy_files": [
+      "src/hmm_full_range.py",
+      "trajectory_v01/src/legacy_hmm.py",
+      "trajectory_v01/src/trajectory_hmm.py"
+    ],
+    "reused_hmm_copy_lines": 1426,
+    "other_added_code_lines": 1104,
+    "scope": "Original v01 counts below retained as historical; revision v02 count is computed from the Git diff."
+  },
+  "files": [
+    {
+      "file": "src/hmm_utils.py",
+      "original_sha256": "52fe8a66ad2baab7df18bea02c79c09964546a8df97294d2cdea69145265054b",
+      "export_sha256": "52fe8a66ad2baab7df18bea02c79c09964546a8df97294d2cdea69145265054b",
+      "original_lines": 473,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "src/profile_search.py",
+      "original_sha256": "73cb9643b75537af5b725100a742e2b6f38886dd59a2e9f9f540b104e2deecb5",
+      "export_sha256": "73cb9643b75537af5b725100a742e2b6f38886dd59a2e9f9f540b104e2deecb5",
+      "original_lines": 133,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "code/run_fixed.py",
+      "original_sha256": "ab639695ce35fec4a9b079b652839a067087263413c0dba4a7b74b5f5e38e7b4",
+      "export_sha256": "ab639695ce35fec4a9b079b652839a067087263413c0dba4a7b74b5f5e38e7b4",
+      "original_lines": 185,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "code/run.sbatch",
+      "original_sha256": "bc1b374ce98f32e0c2345dd1915bd57b939bfbe3ef2415189fda77844201867b",
+      "export_sha256": "4ab465a62ba90d46a33a4fcb1c3f7fe7731b3b423a5e15bfda31fe957a9b9158",
+      "original_lines": 18,
+      "path_redacted": true,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "tests/test_profile_search.py",
+      "original_sha256": "9d96f89c76ab71689136c122a7aeaba6f04cc0b4fec7b308839cf17a1e10618c",
+      "export_sha256": "9d96f89c76ab71689136c122a7aeaba6f04cc0b4fec7b308839cf17a1e10618c",
+      "original_lines": 88,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "config.json",
+      "original_sha256": "d41ac3f0f5a7e8b317fef87a0c1c00ea8e2d9a281657f0f654673254f2943ecb",
+      "export_sha256": "d41ac3f0f5a7e8b317fef87a0c1c00ea8e2d9a281657f0f654673254f2943ecb",
+      "original_lines": 80,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "source_identity.json",
+      "original_sha256": "90b102bc333e25440c59e1c098877c9828cd7580a9784ba42466838c12b8c0d8",
+      "export_sha256": "90b102bc333e25440c59e1c098877c9828cd7580a9784ba42466838c12b8c0d8",
+      "original_lines": 17,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "trajectory_v01/code/run_trajectory.py",
+      "original_sha256": "bec8a1c2203f93c6f4f6b5d89730abc76af04457c5c306ccba5002de666cc0f4",
+      "export_sha256": "bec8a1c2203f93c6f4f6b5d89730abc76af04457c5c306ccba5002de666cc0f4",
+      "original_lines": 138,
+      "path_redacted": false
+    },
+    {
+      "file": "trajectory_v01/code/run.sbatch",
+      "original_sha256": "2df5ae4ca3fe4450044267780fae7bfb8aaa6a02b9052a289a6866f37f492e83",
+      "export_sha256": "8b744da22248712825f0a5ed15c1d931b5a3dcea422c07dcf0caf34df6936ca0",
+      "original_lines": 15,
+      "path_redacted": true
+    },
+    {
+      "file": "trajectory_v01/src/trajectory_hmm.py",
+      "original_sha256": "3d723ca4157709229aca1931be86cd5318e705985e48c0e7c353a47e6b292632",
+      "export_sha256": "3d723ca4157709229aca1931be86cd5318e705985e48c0e7c353a47e6b292632",
+      "original_lines": 476,
+      "path_redacted": false
+    },
+    {
+      "file": "src/hmm_full_range.py",
+      "original_sha256": "06b3871f23af9f9ca6d2613150d474721d1d80f176ac9159775733fb2c8780bb",
+      "export_sha256": "06b3871f23af9f9ca6d2613150d474721d1d80f176ac9159775733fb2c8780bb",
+      "original_lines": 473,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "code/audit_receipt.py",
+      "original_sha256": "e3a6feef0aeddf288632b70e6a4ae6aaa1cfdc1fc20ef74030509ba5afe957e7",
+      "export_sha256": "e3a6feef0aeddf288632b70e6a4ae6aaa1cfdc1fc20ef74030509ba5afe957e7",
+      "original_lines": 153,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "trajectory_v01/code/audit_receipt.py",
+      "original_sha256": "fd844b3109ea4e224349dec5f2260fe90cc4c65272fe2d52ef8b25a1c1c77e96",
+      "export_sha256": "fd844b3109ea4e224349dec5f2260fe90cc4c65272fe2d52ef8b25a1c1c77e96",
+      "original_lines": 42,
+      "path_redacted": false
+    },
+    {
+      "file": "trajectory_v01/code/audit_ablation.py",
+      "original_sha256": "1d5237a21bc52fb7864f772b2a1417103fbe7d504b956210287df7bcd80461b6",
+      "export_sha256": "1d5237a21bc52fb7864f772b2a1417103fbe7d504b956210287df7bcd80461b6",
+      "original_lines": 141,
+      "path_redacted": false
+    },
+    {
+      "file": "trajectory_v01/code/ablation.sbatch",
+      "original_sha256": "838f9b0033cb03dc4e28ad0193a3e5ae1916e965347f203319a45d58d70758ec",
+      "export_sha256": "28821eec4377eb790f3798bea61a7f3312d2f8c19d58be23a069cdb3ff6ea8d5",
+      "original_lines": 15,
+      "path_redacted": true
+    },
+    {
+      "file": "trajectory_v01/code/check_ablation_receipt.py",
+      "original_sha256": "1cedfc8843cae7eaac1099f38467336016a0cbf4879297a71f3afcdc7cfe9498",
+      "export_sha256": "1cedfc8843cae7eaac1099f38467336016a0cbf4879297a71f3afcdc7cfe9498",
+      "original_lines": 59,
+      "path_redacted": false
+    },
+    {
+      "file": "trajectory_v01/src/legacy_hmm.py",
+      "original_sha256": "818ce5757c27835b5e263d2b89e233b97d81a778bfbb6a7a043f10edcd6df6f5",
+      "export_sha256": "818ce5757c27835b5e263d2b89e233b97d81a778bfbb6a7a043f10edcd6df6f5",
+      "original_lines": 474,
+      "path_redacted": false
+    },
+    {
+      "file": "trajectory_v01/code/plot_trajectory.py",
+      "original_sha256": "d73780380c9043f0f889c0ab397c58691bcb8b6954052e891d7ea2a6518ecde1",
+      "export_sha256": "0658978b5d90422356b774935cf061421e74d8279a3f79b97c2f977048b261e2",
+      "original_lines": 68,
+      "path_redacted": true
+    },
+    {
+      "file": "trajectory_v01/code/plot_before_after.py",
+      "original_sha256": "ad26012c31e1a37b9df6b191750bebde4c42b407e677f33f512bda610b95578d",
+      "export_sha256": "2b649952e7d8961213d6e4ed6d8f7d3d91bf9ee4b12d99f57338f518e10b59fa",
+      "original_lines": 68,
+      "path_redacted": true
+    },
+    {
+      "file": "trajectory_v01/code/refresh_gallery.py",
+      "original_sha256": "ddcc75a140241a8259f9adb803fb0d2c2630e0318e304555ea34045fbf37b2ba",
+      "export_sha256": "4576d0a7e21c87a4a6009848f65744b4ebef8f8c09e5229394169c4c9ea0869a",
+      "original_lines": 54,
+      "path_redacted": true,
+      "source_revision": "shared gallery parameterization"
+    },
+    {
+      "file": "src/upstream_io.py",
+      "original_sha256": "daaa558f848ed326eb1dc3c0db82650cb646ffcb26e4824d94a9b45aaa4a1179",
+      "export_sha256": "6e76759ed7e41a0e70a9858334d4b8ed1a67b9b8f70f00e907f0a10c354ecc88",
+      "original_lines": 540,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "code/gate.sbatch",
+      "original_sha256": "d79c6e21a0cec4727117c3e096ec39f8a2cfb16938794f0ceccf83baa3335e2c",
+      "export_sha256": "49963ca21dbebbdcd7c5809e34ee6cfa5bb2831824cd07c1acfd4d83ba3117e4",
+      "original_lines": 17,
+      "path_redacted": true,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "tests/test_hmm_bounds.py",
+      "original_sha256": "9927202604b881d5fe23e075d258e3d9b7965fe9a5c1c532caa974b8297da19c",
+      "export_sha256": "9927202604b881d5fe23e075d258e3d9b7965fe9a5c1c532caa974b8297da19c",
+      "original_lines": 51,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "trajectory_v02/src/posterior_paths.py",
+      "original_sha256": "b2fadd9a81f0975e2016c14b48deecd8b515385715f3e9ea8190cd1d8e8a9a60",
+      "export_sha256": "b2fadd9a81f0975e2016c14b48deecd8b515385715f3e9ea8190cd1d8e8a9a60",
+      "original_lines": 41,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "trajectory_v02/src/trajectory_hmm.py",
+      "original_sha256": "9a344f4f29f9edda8da2275f78bc8571d12bb1c91a65d3f59be6efcc82fd7b18",
+      "export_sha256": "9a344f4f29f9edda8da2275f78bc8571d12bb1c91a65d3f59be6efcc82fd7b18",
+      "original_lines": 473,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "trajectory_v02/code/run.sbatch",
+      "original_sha256": "48d646432d6a46fa17ee1e08d7b2e670ef29b6f1c84a3c0cc77d344b8d09b024",
+      "export_sha256": "c20b0e84d6cf605e8d38b4a707dfe15c9f4001e84abb323a939c2686c1023680",
+      "original_lines": 17,
+      "path_redacted": true,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "trajectory_v02/code/run_trajectory.py",
+      "original_sha256": "627561f0e92663616e17f3f0f75221276edd637e341a94edd80e124ad5c362c5",
+      "export_sha256": "627561f0e92663616e17f3f0f75221276edd637e341a94edd80e124ad5c362c5",
+      "original_lines": 153,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "trajectory_v02/tests/test_posterior_paths.py",
+      "original_sha256": "db5355d5deafd4bb7a175455e8137425b23b47c1212adaaaffc0d4b936ab31a2",
+      "export_sha256": "db5355d5deafd4bb7a175455e8137425b23b47c1212adaaaffc0d4b936ab31a2",
+      "original_lines": 41,
+      "path_redacted": false,
+      "source_revision": "revision_v02"
+    },
+    {
+      "file": "trajectory_v02/code/audit_receipt.py",
+      "original_sha256": "bf837d33bfc0c881eaa64051b5031bd07877e80e549ec02c6a3be144762fd5c3",
+      "export_sha256": "bf837d33bfc0c881eaa64051b5031bd07877e80e549ec02c6a3be144762fd5c3",
+      "original_lines": 81,
+      "path_redacted": false,
+      "source_revision": "revision_v02 postprocessing"
+    },
+    {
+      "file": "trajectory_v02/code/plot_smoothness.py",
+      "original_sha256": "6039c240cda1fb94303f0027a8bea00d6ae9966ccd30cac9e92009cf0e4636d2",
+      "export_sha256": "f26ecb72712a2b9009e4d48da0922170f010d2d9145f95920c5fa5dcfe5ed7d3",
+      "original_lines": 84,
+      "path_redacted": true,
+      "source_revision": "revision_v02 postprocessing"
+    },
+    {
+      "file": "tools/compare_completed.py",
+      "original_sha256": "60e19cf2c9c1a130d200cb2a986b7da2818d68756a897448691c26cc33077bdd",
+      "export_sha256": "60e19cf2c9c1a130d200cb2a986b7da2818d68756a897448691c26cc33077bdd",
+      "original_lines": 38,
+      "path_redacted": false,
+      "source_revision": "revision_v02 postprocessing"
+    },
+    {
+      "file": "trajectory_v02/code/summarize_posterior.py",
+      "original_sha256": "15fcc8bc135184dbe13a81beb20ca7002a3685c3fb0c2ed74ddfb51afa7e8360",
+      "export_sha256": "15fcc8bc135184dbe13a81beb20ca7002a3685c3fb0c2ed74ddfb51afa7e8360",
+      "original_lines": 142,
+      "path_redacted": false,
+      "source_revision": "posterior decomposition v03; existing conditional_trajectory_v02 inputs"
+    },
+    {
+      "file": "trajectory_v02/code/audit_posterior_summary.py",
+      "original_sha256": "2644a176a9b86c1da974fb3d6d7b864ad129dee723ee30b7c9fc3da3ad78d00f",
+      "export_sha256": "2644a176a9b86c1da974fb3d6d7b864ad129dee723ee30b7c9fc3da3ad78d00f",
+      "original_lines": 58,
+      "path_redacted": false,
+      "source_revision": "posterior decomposition v03; existing conditional_trajectory_v02 inputs"
+    },
+    {
+      "file": "trajectory_v02/code/plot_posterior_summary.py",
+      "original_sha256": "d7cb7603505cf23826e3ff23d31065af85b74aa7c2a28f337a814c54a89675c1",
+      "export_sha256": "1af48b6fe7253f86e54f882106e09b732aa826cd0132b62361dc5bd96fd0537c",
+      "original_lines": 101,
+      "path_redacted": true,
+      "source_revision": "posterior decomposition v03; existing conditional_trajectory_v02 inputs"
+    }
+  ],
+  "current_v02_counts": {
+    "new_code_and_launcher_files": 27,
+    "new_code_and_launcher_lines": 3596,
+    "core_hmm_numstat_vs_baseline": "8\t9\tsrc/hmm_utils.py"
+  },
+  "current_v03_counts": {
+    "new_postprocessing_files_this_revision": 3,
+    "new_postprocessing_lines_this_revision": 301,
+    "core_hmm_changed_this_revision": false,
+    "inference_rerun": false
+  }
+}
